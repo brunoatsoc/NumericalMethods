@@ -19,7 +19,7 @@ def newtonRaphson(a, b, epsilon, fx, fxl):
             file.write(f"{x:6f}\t\t")
             file.write(f"{f:6f}\n")
 
-        # Se o valor da função na possivel raiz for menor pu igual a toleracia(condição de parada) o algoritmo retorna o valor x
+        # Se o valor da função na possivel raiz for menor ou igual a tolerancia(condição de parada) o algoritmo retorna o valor x
         if module(f) <= epsilon:
             return x
 
@@ -52,7 +52,7 @@ b = float(b_str)
 # Pega o valor do epsilon na ultima linha
 epsilon = float(lines[3])
 
-# Pega o retorno da função com ovalor da raiz aproximada
+# Pega o retorno da função com o valor da raiz aproximada
 answer = newtonRaphson(a, b, epsilon, func, df)
 
 # Escreve o valor da raiz aproximada no arquivo

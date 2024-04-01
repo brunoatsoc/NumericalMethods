@@ -32,7 +32,7 @@ def falseposition(a, b, epsilon, func):
             file.write(f"{c:6f}\t\t")
             file.write(f"{fc:6f}\n")
 
-        # Se o modulo do resultado da função na possivel raiz for manor que a tolerancia o algoritmo vai retornar esse x como raiz aproximada
+        # Se o modulo do resultado da função na possivel raiz for menor ou igual a tolerancia o algoritmo vai retornar esse x como raiz aproximada
         if module(fc) <= epsilon:
             return c
 

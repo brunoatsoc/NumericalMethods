@@ -36,7 +36,7 @@ def bissection(a, b, epsilon, fx):
             file.write(f"{x:6f}\t\t")
             file.write(f"{fx:6f}\n")
 
-        # Se o modulo do resultado da função na possivel raiz for manor que a tolerancia o algoritmo vai retornar esse x como raiz aproximada
+        # Se o modulo do resultado da função na possivel raiz for menor ou igual a tolerancia o algoritmo vai retornar esse x como raiz aproximada
         if module(fx) <= epsilon:
             return x
 

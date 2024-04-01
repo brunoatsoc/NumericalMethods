@@ -2,3 +2,4 @@
 # Bisection
 # False Position
 # Newton Raphson
+# Secant
