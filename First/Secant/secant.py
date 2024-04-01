@@ -8,7 +8,7 @@ import sys
 def secant(a, b, epsilon, fx):
     # Faz a eescrita no arquivo txt do cabeçalho dos dados
     with open("resultsecant.txt", "w") as file:
-        file.write("xn\t\t\t\tf(xn)\n")
+        file.write("xn\t\t\t\t\t\tf(xn)\n")
         file.write(f"{a:6f}\t\t\t\t")
         x = a
         file.write(f"{eval(fx):6f}\n")
