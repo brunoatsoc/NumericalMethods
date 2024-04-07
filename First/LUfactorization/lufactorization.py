@@ -89,7 +89,7 @@ while(i < size):
     i = i + 1
 
 # Cria um arquivo com a matriz escalonada, a matriz com os multiplicadores e com o valor dos termos independentes
-with open("xxxxx.txt", 'w') as file:
+with open("answerlufactorization.txt", 'w') as file:
     # Escreve a matriz escalonada no arquivo
     for line in array:
         line_format = ' '.join(map(str, line))
