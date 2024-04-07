@@ -5,8 +5,8 @@ def replaceline(array, line1, line2):
     # Retorna o array
     return array
 
-# Metodo da eliminação de Gauss
-def gausselimination(array):
+# Metodo Fatoração LU
+def lufactorization(array):
     size = len(array) # Tamanho do array(número de linhas)
     # Contadores para linhas e colunas
     i = 0
@@ -44,11 +44,11 @@ def gausselimination(array):
 
         i = i + 1
         
-    return array, mtpl # Retorna o array escalonado
+    return array, mtpl # Retorna o array escalonado e um vetor com os multiplicadores
 
 array = [] # Array onde vai ser guardada a matriz
-multiplicator = []
-b = []
+multiplicator = [] # Vetor onde os multiplicadores serão guardados
+b = [] # Vetor onde os termos independentes das equações serão guardados
 
 # Abre o aquivo em que está a matriz e guarda na variavel array
 with open("lufactorization.txt", 'r') as file:
@@ -62,18 +62,21 @@ with open("lufactorization.txt", 'r') as file:
         elementos = linha.strip().split(' ')
         array.append([float(elemento) for elemento in elementos if elemento])
 
-    # Ler os valores após a quebra de linha
+    # Ler os valores de b
     for linha in linhas[idx_quebra+1:]:
         b.extend([float(elemento) for elemento in linha.strip().split(' ') if elemento])
 
-array, multiplicator = gausselimination(array) # Array atualizado com a matriz escalonada
+array, multiplicator = lufactorization(array) # Array atualizado com a matriz escalonada e os multiplicadores
 
+# Este pedaço de codigo organiza a matriz onde os multiplicadores vão ficar
 size = len(array)
 l = [[None] * size for _ in range(size)]
 i = 0
 k = 0
 while(i < size):
     j = 0
+
+    # Monta a matriz com os multiplicdores na diagonal inferior, 1 na diagonal principal e zeros na diagonal superior
     while(j < size):
         if i == j:
             l[i][j] = 1
@@ -85,19 +88,23 @@ while(i < size):
         j = j + 1
     i = i + 1
 
-# Cria um arquivo com a matriz escalonada e com a resposta
+# Cria um arquivo com a matriz escalonada, a matriz com os multiplicadores e com o valor dos termos independentes
 with open("xxxxx.txt", 'w') as file:
-    # Escreve a matriz no arquivo
+    # Escreve a matriz escalonada no arquivo
     for line in array:
         line_format = ' '.join(map(str, line))
         file.write(line_format + '\n')
     
+    # Pula uma linha
     file.write('\n')
     
+    # Escreve a matriz com os multiplicadores no arquivo
     for line in l:
         line_format = ' '.join(map(str, line))
         file.write(line_format + '\n')
     
+    # Pula uma linha
     file.write('\n')
     
+    # Escreve os coeficientes independentes
     file.write(f'B = {b}')
